@@ -8,6 +8,8 @@ Bug or suggestion：https://github.com/hms5232/get-LAN-IP-telegram-bot/issues
 """
 
 
+import platform
+
 from telegram.ext import Updater, CommandHandler
 import secret
 
@@ -48,6 +50,12 @@ def show_user_info(bot, update):
 
 def get_ip(updater):
 	""" 找 IP 後回給使用者 """
+
+	if platform.system() != 'Linux':
+		'''
+		https://docs.python.org/3/library/platform.html#platform.system
+		'''
+		updater.bot.send_message(uid, 'Not supported OS.')
 
 	# TODO: 取得裝置區域網路 ip
 	# 將設定檔中全部的 id 都傳一輪
