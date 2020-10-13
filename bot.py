@@ -12,6 +12,7 @@ import platform
 
 from telegram.ext import Updater, CommandHandler
 import secret
+import ifcfg
 
 
 # 設定一些個人的環境變數
@@ -57,10 +58,24 @@ def get_ip(updater):
 		'''
 		updater.bot.send_message(uid, 'Not supported OS.')
 
-	# TODO: 取得裝置區域網路 ip
+	# 取得裝置區域網路 ip
+	result = ''
+	for name, interface in ifcfg.interfaces().items():
+		'''
+		介面卡1
+		IPv4: 127.0.0.1
+		Netmask: 255.255.0.0
+
+		介面卡2
+		IPv4: 192.168.0.1
+		Netmask: 255.0.0.0
+		'''
+		result += interface['device'] + '\nIPv4: ' + interface['inet'] + '\nNetmask: ' + interface['netmask']
+		result += '\n\n'
+
 	# 將設定檔中全部的 id 都傳一輪
 	for uid in secret.notify_user_id:
-		updater.bot.send_message(uid, 'Welcome to Telegram & RPi!')
+		updater.bot.send_message(uid, result)
 
 
 updater.dispatcher.add_handler(CommandHandler(['start', 'about'], welcome))  # 歡迎訊息 / 機器人資訊
