@@ -61,6 +61,11 @@ def get_ip(updater):
 	# 取得裝置區域網路 ip
 	result = ''
 	for name, interface in ifcfg.interfaces().items():
+		# 如果我們要的項目有 Nonetype 就會出錯。
+		if not interface['inet'] or not ['netmask']:
+			# 可是如果是是 None 就代表沒連上網，也就不用了。
+			continue
+
 		'''
 		介面卡1
 		IPv4: 127.0.0.1
@@ -70,8 +75,14 @@ def get_ip(updater):
 		IPv4: 192.168.0.1
 		Netmask: 255.0.0.0
 		'''
-		result += interface['device'] + '\nIPv4: ' + interface['inet'] + '\nNetmask: ' + interface['netmask']
-		result += '\n\n'
+		try:
+			result += interface['device'] + '\nIPv4: ' + interface['inet'] + '\nNetmask: ' + interface['netmask']
+		except TypeError:
+			result += '處理 ' + interface['device'] + ' 時發生錯誤，請查看並在 issue 回報該介面卡輸出的資訊！'
+		except:
+			result += 'Something went wrong!'
+		finally:
+			result += '\n\n'
 
 	# 將設定檔中全部的 id 都傳一輪
 	for uid in secret.notify_user_id:
