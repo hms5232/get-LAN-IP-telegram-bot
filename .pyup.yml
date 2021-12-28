@@ -1,0 +1,27 @@
+# https://pyup.io/docs/bot/config/
+
+# configure updates globally
+# default: all
+# allowed: all, insecure, False
+update: insecure
+
+# configure dependency pinning globally
+# default: True
+# allowed: True, False
+pin: False
+
+# update schedule
+# default: empty
+# allowed: "every day", "every week", ..
+schedule: "every two weeks"
+
+# add a label to pull requests, default is not set
+# requires private repo permissions, even on public repos
+# default: empty
+label_prs: pyup
+
+# assign users to pull requests, default is not set
+# requires private repo permissions, even on public repos
+# default: empty
+assignees:
+ - hms5232
