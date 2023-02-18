@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "get-lan-ip-telegram-bot"
+version = "2.0.0"
+description = "拿到區域網路 IP 並傳給你的 Telegram bot"
+authors = ["hms5232 <hms5232@hhming.moe>"]
+license = "MPL-2.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+python-telegram-bot = "12.5"
+ifcfg = "^0.23"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

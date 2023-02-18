@@ -13,7 +13,7 @@
 ### 系統
 1. 安裝 pip3： `sudo apt install python3-pip`
 2. 安裝部分相依套件： `sudo apt install libffi-dev libssl-dev`
-3. （可選）安裝 pipenv： `pip3 install pipenv`
+3. （可選）安裝 [Poetry](https://python-poetry.org/)：https://python-poetry.org/docs/#installation
 ### 專案
 1. Clone this project `git clone https://github.com/hms5232/get-LAN-IP-telegram-bot.git` or [download zip](https://github.com/hms5232/get-LAN-IP-telegram-bot/archive/main.zip)
 2. cd into project dir
@@ -23,12 +23,12 @@
 	* 直接安裝
 		1. 安裝 [python-telegram-bot](https://pypi.org/project/python-telegram-bot/)： `pip3 install python-telegram-bot==12.5`
 		2. 安裝 [ifcfg](https://pypi.org/project/ifcfg/)： `pip3 install ifcfg`
-	* Pipenv  
-		`pipenv install`
+	* Poetry
+		`poetry install`
 
 ## 使用
 * 使用一般方法安裝者： `python3 bot.py`
-* 使用 Pipenv 者： `pipenv run python3 bot.py`
+* 使用 Poetry 者： `poetry run python3 bot.py`
 
 ## LICENSE
 See [LICENSE](LICENSE) file.
