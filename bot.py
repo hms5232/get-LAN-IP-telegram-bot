@@ -93,10 +93,20 @@ updater.dispatcher.add_handler(CommandHandler(['start', 'about'], welcome))  # �
 updater.dispatcher.add_handler(CommandHandler('info', show_user_info))  # 顯示使用者資訊
 
 
-# 機器人起床!!!
-updater.start_polling()
-# 找 IP
-get_ip(updater)
-# 功成身退
-updater.stop()
-updater.is_idle = False
+# 嘗試一定次數都沒辦法連接上機器人就放棄
+# 可能原因：網路尚未
+count = 0
+while count > 3:
+	try:
+		# 機器人起床!!!
+		updater.start_polling()
+		# 找 IP
+		get_ip(updater)
+		# 功成身退
+		updater.stop()
+		updater.is_idle = False
+	except telegram.error.NetworkError:
+		from time import sleep
+
+		sleep(3)
+		count += 1
