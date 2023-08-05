@@ -7,10 +7,20 @@ license = "MPL-2.0"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8.1"
 python-telegram-bot = "12.5"
 ifcfg = "^0.23"
 
+
+[tool.poetry.group.dev.dependencies]
+poethepoet = "^0.21.1"
+flake8 = "^6.1.0"
+autopep8 = "^2.0.2"
+
+
+[tool.poe.tasks]
+lint = "flake8 **/*.py --max-line-length=120"
+format = "autopep8 **/*.py --max-line-length=120 --in-place"
 
 [build-system]
 requires = ["poetry-core"]
